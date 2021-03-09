@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>create phone</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link th:href="@{/css/addPhone.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="main">
+    <div class="main_left">
+        <h2>add phone</h2>
+        <form action="/addPhone" method="post">
+            <label style="padding: 0; margin:0">brand</label> <input type="text" name="brand" class="form-control mb-4">
+            <label style="padding: 0; margin:0">model</label> <input type="text" name="model" class="form-control mb-4">
+            <label style="padding: 0; margin:0">price</label> <input type="number" name="value" class="form-control mb-4">
+            <label style="padding: 0; margin:0">additional tags</label> <input type="text" name="tags" class="form-control mb-4">
+            <label style="padding: 0; margin:0">cpu score</label> <input type="number" name="cpu" class="form-control mb-4">
+            <label style="padding: 0; margin:0">gpu score</label> <input type="number" name="gpu" class="form-control mb-4">
+            <label style="padding: 0; margin:0">ram size</label> <input type="number" name="ram" class="form-control mb-4">
+            <label style="padding: 0; margin:0">rom size</label> <input type="number" name="rom" class="form-control mb-4">
+            <label style="padding: 0; margin:0">photo score</label> <input type="number" name="photo" class="form-control mb-4">
+            <label style="padding: 0; margin:0">video score</label> <input type="number" name="video" class="form-control mb-4">
+            <label style="padding: 0; margin:0">have 3.5 minijack</label> <input type="checkbox" name="miniJack" class="form-control mb-4">
+            <label style="padding: 0; margin:0">have nfc</label> <input type="checkbox" name="nfc" class="form-control mb-4">
+            <label style="padding: 0; margin:0">have sd</label> <input type="checkbox" name="sd" class="form-control mb-4">
+            <label style="padding: 0; margin:0">sim slots count</label> <input type="number" name="simSlots" class="form-control mb-4">
+            <label style="padding: 0; margin:0">water resistance: 0 - none; 1 - drops; 2 - full</label> <input type="number" name="waterres" class="form-control mb-4">
+            <label style="padding: 0; margin:0">screen size</label> <input type="number" step="0.1" name="screenSize" class="form-control mb-4">
+            <label style="padding: 0; margin:0">screen quality 0-100</label> <input type="number" name="screenQuality" class="form-control mb-4">
+            <label style="padding: 0; margin:0">screen PPI</label> <input type="number" name="screenPPI" class="form-control mb-4">
+            <label style="padding: 0; margin:0">battery size</label> <input type="number" name="batterySize" class="form-control mb-4">
+            <label style="padding: 0; margin:0">color</label> <input type="text" name="color" class="form-control mb-4">
+            <label style="padding: 0; margin:0">materials</label> <input type="text" name="materials" class="form-control mb-4">
+            <label style="padding: 0; margin:0">release date in format: day-month-year</label> <input type="text" name="releaseDate" class="form-control mb-4">
+            <label style="padding: 0; margin:0">link to yandex market</label> <input type="text" name="link" class="form-control mb-4">
+
+            <button type="submit" class="btn btn-success">add phone</button>
+        </form>
+    </div>
+    <div class="main_right">
+        <a href="/db" target="_blank"><h3>open db</h3></a>
+        <h3 style="margin-top:40px;"> usable tags</h3>
+        <div th:each="el : ${tags}" class="text">
+            <p th:text="${el}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

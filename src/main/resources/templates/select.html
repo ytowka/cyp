@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>список</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-1">
+    <h1>phone selection</h1>
+    <h2 th:text="${pf}+' - '+${pt}"></h2>
+
+    <div th:each="element : ${phones}">
+        <h3 th:text="${element.phone.brand} + ' ' +${element.phone.model}" style="margin-left:50px; "></h3>
+        <h4 th:text="'тэгов совпало: ' +${element.tagMatches} +' ' +${element.allMatch}" style="margin-left:50px; "></h4>
+    </div>
+</div>
+
+</body>
+</html>

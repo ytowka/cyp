@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>secret db</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Created phones</h1>
+    <div th:each="el : ${phones}">
+        <a th:href="'/select/'+${el.id} " target="_blank"><h2 th:text="${el.brand}+' '+${el.model} + ', id: ' + ${el.id}" style="marin-left:50px; "></h2></a>
+        <div th:each="el2 : ${el.getTags()}">
+            <h4 th:text="${el2}" style="marin-left:70px; margin-top: 0px"></h4>
+        </div>
+        <a th:href="${el.link}" target="_blank"><h4 th:text="${el.link}" style="marin-left:50px margin-bottom:30px;"></h4></a>
+    </div>
+</div>
+</body>
+</html>

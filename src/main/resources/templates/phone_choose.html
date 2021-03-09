@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone choose</title>
+    <link type="text/css" rel="stylesheet" href="../static/css/for phone choose.css" th:href="@{/css/for phone choose.css}">
+    <link rel="shortcut icon" th:href="@{/img/logo100x100.png}" type="image/png">
+</head>
+<body>
+    <header>
+        <div class='head'>
+            <div class='head-logo'>
+                <img th:src="@{img/logo100x100.png}">
+            </div>
+        </div>
+        <h2 th:text="${pf} +' - '+${pt}" style="margin-left: 30%;"></h2>
+    </header>
+
+    <section>
+        <div class='tag_info'>
+        <div class="tags_list">
+            <div class='phone__information_tags_panel'>
+                <div th:each="tag : ${tags}" class='information_tags'>
+                    <h3 th:text="${tag}"></h3>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class='content'>
+            <div class='phone_list'>
+                <ul>
+                    <li th:each="el : ${phones}">
+                        <div class='phone_info'>
+                            <div class='phone_image'>
+                                <img style="width : 100px; height: auto; margin-top:15px" th:src="@{img/phones/{link}(link=${el.phone.photo()})}">
+                            </div>
+                            <div class='phone_information'>
+                                <div class='phone_name'>
+                                    <a th:href="@{/select/{id}(id=${el.phone.getId()}, pff=${intPf}, ptt=${intPt})}"><h2 class='text_phone_name' th:text="${el.phone.brand}+' '+${el.phone.model}">
+                                </h2></a>
+                                </div>
+                                <div class='phone_cost'><h3 th:text="${el.phone.getValue()}+'p'"></h3></div>
+                                <div th:switch="${el.missTags.isEmpty()}">
+                                    <div th:case="${true}">
+                                        <h3 style="margin-left:20px;"> все тэги совпали</h3>
+                                    </div>
+                                    <div th:case="${false}">
+                                        <h3 style="margin-left:30px">Отсутсвующие тэги:</h3>
+                                        <div class='phone__information_tags_panel'>
+                                            <div th:each="tx : ${el.missTags}" class='phone__information_tags'>
+                                                <h3 th:text="${tx}"></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class='foot'>
+            <img th:src="@{/img/footer.png}">
+        </div>
+    </footer>
+</body>
+</html>

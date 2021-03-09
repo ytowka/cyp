@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link type="text/css" rel="stylesheet" href="../static/css/for main page.css" th:href="@{css/for main page.css}">
+    <link rel="shortcut icon" th:href="@{/img/logo100x100.png}" type="image/png">
+    <style>
+        @font-face {
+            font-family: Roboto;
+            src: url(../static/fonts/Roboto-Regular.woff), url(../static/fonts/Roboto-Regular.woff2);
+        }
+        body{
+            font-family: Roboto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class='head'>
+        <div class='head-logo'>
+            <img src="../static/img/logo100x100.png" th:src="@{img/logo500x100.png}">
+        </div>
+    </div>
+</header>
+<section>
+    <div class='content'>
+        <div class='content_search_blok'>
+            <div class='head-search'>
+                <div class='search_blok'>
+                    <form th:action="@{/search}" method="get">
+                        <input name="text" placeholder="Искать здесь..." type="search">
+                        <button type="submit">Поиск</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <form th:action="@{/select}" method="post" th:object="${form}">
+        <div class='content_main_parameters'>
+            <div class='phone_tags'>
+                <div class='max_min_cost'>
+                    <label>
+                        <input name='pf' placeholder="Минимальная стоимость" type='number'>
+                    </label>
+                </div>
+                <div class='max_min_cost'>
+                    <label>
+                        <input name='pt' placeholder="Максимальная стоимость" type='number'>
+                    </label>
+                </div>
+            </div>
+            <fieldset>
+                    <div th:each="tag, itemStat : *{tagsList}" class='tagsf'>
+                        <input th:type="hidden" th:field="*{tagsList[__${itemStat.index}__].id}" value="${tag.id}">
+                        <label  th:text="${tag.label}"></label>
+                        <input th:field="*{tagsList[__${itemStat.index}__].checked}" th:type="checkbox">
+                    </div>
+                <button type="reset">сбросить</button>
+            </fieldset>
+            <button type="submit" style="margin-top:10px; margin-left:30px;">найти</button>
+        </div>
+    </form>
+        <div class='content_secondly_parameters'></div>
+    </div>
+</section>
+<footer>
+    <div class='foot'>
+        <div class='foot_logo'>
+            <img th:src="@{img/footer.png}">
+        </div>
+    </div>
+</footer>
+</body>
+</html>
